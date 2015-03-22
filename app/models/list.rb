@@ -4,7 +4,7 @@ class List < ActiveRecord::Base
   has_many :notifications
 
   def self.previous
-    List.all[-2].movies
+    List.all[-2].try(:movies)
   end
 
   def self.current

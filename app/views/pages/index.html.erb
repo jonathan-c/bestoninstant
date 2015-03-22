@@ -1,5 +1,12 @@
 <h1>Best On Instant</h1>
-<h3>Last updated on: <%= @list.created_at %></h3>
+<h3>Last updated on: <%= @list.created_at.strftime("%m/%d/%Y") %></h3>
+<% if @notications %>
+  <ul>
+    <% @notifications.each do |notification| %>
+      <li><%= "#{notification.message}" %></li>
+    <% end %>
+  </ul>
+<% end %>
 <ul>
   <% @movies.each do |movie| %>
     <li><%= "#{movie.rank}. #{movie.name} (#{movie.year})" %></li>
