@@ -6,6 +6,7 @@ url = "http://instantwatcher.com/titles/all"
 page = agent.get(url)
 page_number = 1
 next_page_url = ""
+list = List.create
 
 # Save Netflix Instant library
 def search_and_save(page)
@@ -26,16 +27,10 @@ top_250 = {}
 i = Imdb::Top250.new()
 i.movies.each do |movie|
   rank = movie.title.split("\n")[0].gsub(".","")
-  title = movie.title.split("\n")[1].lstrip
-  # year = movie.year
-  top_250[rank] = title
-end
-
-# Save Best On Instant list
-list = List.create
-top_250.each do |k,v|
-  if @netflix_instant_library.include?(v)
-    movie = Movie.find_or_create_by_name(name: v)
-    movie.update_attributes(rank: k, list_id: list.id)
+  name = movie.title.split("\n")[1].lstrip
+  year = movie.year
+  if @netflix_instant_library.include?(name)
+    movie = Movie.find_or_create_by_name(name: name)
+    movie.update_attributes(rank: rank, list_id: list.id, year: year)
   end
 end
