@@ -1,6 +1,6 @@
 <h1>Best On Instant</h1>
 <ul>
   <% @list.each do |movie| %>
-    <li><%= "#{movie.rank}. #{movie.name}" %></li>
+    <li><%= "#{movie.rank}. #{movie.name} (#{movie.year})" %></li>
   <% end %>
 </ul>
