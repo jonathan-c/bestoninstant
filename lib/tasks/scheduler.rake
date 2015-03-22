@@ -39,4 +39,7 @@ task :update => :environment do
     end
   end
 
+  List.notify_movies_removed
+  List.notify_movies_added
+
 end

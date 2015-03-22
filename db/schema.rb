@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150322212118) do
+ActiveRecord::Schema.define(:version => 20150322234035) do
 
   create_table "lists", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -22,6 +22,14 @@ ActiveRecord::Schema.define(:version => 20150322212118) do
     t.integer  "rank"
     t.string   "name"
     t.integer  "year"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "list_id"
+  end
+
+  create_table "notifications", :force => true do |t|
+    t.string   "message"
+    t.string   "type"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.integer  "list_id"
