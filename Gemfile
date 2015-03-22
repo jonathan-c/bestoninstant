@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.18'
-gem 'sqlite3'
+gem 'pg'
 gem 'nokogiri'
 gem 'mechanize'
 gem 'imdb'
