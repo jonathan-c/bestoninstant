@@ -43,4 +43,29 @@ task :update => :environment do
   List.notify_movies_removed
   List.notify_movies_added
 
+  expiring_agent = Mechanize.new
+  expiring_page = expiring_agent.get("http://whatsonnetflixnow.blogspot.com/p/expiring-soon.html")
+  expiring = expiring_page.search(".entry-content a")
+  expiring.pop
+  expiring.each do |movie|
+    expiring_movie = Movie.find_by_name(movie.children.to_html)
+    if List.current.include?(expiring_movie)
+      # Send notification & update expire date
+      friends = {
+        ENV["jon"] => "Jon",
+        ENV["tone"] => "Anthony"
+      }
+      @client = Twilio::REST::Client.new
+
+      friends.each do |key, value|
+        @client.account.messages.create(
+          :from => ENV["from"],
+          :to => key,
+          :body => "#{expiring_movie.name} (#{expiring_movie.year}) will soon be removed from Netflix instant. Watch it now before it's too late!"
+        )
+      end
+
+    end
+  end
+
 end
