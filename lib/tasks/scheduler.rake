@@ -46,10 +46,12 @@ task :update => :environment do
   expiring_agent = Mechanize.new
   expiring_page = expiring_agent.get("http://whatsonnetflixnow.blogspot.com/p/expiring-soon.html")
   expiring = expiring_page.search(".entry-content a")
+  expired =  []
+  expiring_page.search(".entry-content strike a").each {|i| expired<<i.children.to_html}
   expiring.pop
   expiring.each do |movie|
     expiring_movie = Movie.find_by_name(movie.children.to_html)
-    if List.current.include?(expiring_movie)
+    if List.current.include?(expiring_movie) && !expired.include?(expiring_movie.name)
       # Send notification & update expire date
       friends = {
         ENV["jon"] => "Jon",
