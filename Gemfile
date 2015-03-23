@@ -5,6 +5,8 @@ gem 'pg'
 gem 'nokogiri'
 gem 'mechanize'
 gem 'imdb'
+gem 'twilio-ruby'
+gem 'figaro'
 
 
 group :assets do
