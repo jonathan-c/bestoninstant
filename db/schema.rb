@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150322234035) do
+ActiveRecord::Schema.define(:version => 20150322235939) do
 
   create_table "lists", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(:version => 20150322234035) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.integer  "list_id"
+    t.string   "url"
   end
 
   create_table "notifications", :force => true do |t|

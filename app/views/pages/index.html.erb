@@ -9,6 +9,10 @@
 <% end %>
 <ul>
   <% @movies.each do |movie| %>
-    <li><%= "#{movie.rank}. #{movie.name} (#{movie.year})" %></li>
+    <li>
+      <b><%= "#{movie.rank}." %></b>
+      <%= link_to("#{movie.name}", movie.url) %>
+      <%= "(#{movie.year})" %>
+    </li>
   <% end %>
 </ul>

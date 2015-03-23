@@ -33,9 +33,10 @@ task :update => :environment do
     rank = movie.title.split("\n")[0].gsub(".","")
     name = movie.title.split("\n")[1].lstrip
     year = movie.year
+    url  = movie.url
     if @netflix_instant_library.include?(name)
       movie = Movie.find_or_create_by_name(name: name)
-      movie.update_attributes(rank: rank, list_id: list.id, year: year)
+      movie.update_attributes(rank: rank, list_id: list.id, year: year, url: url)
     end
   end
 
