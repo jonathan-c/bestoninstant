@@ -38,9 +38,22 @@ task :update => :environment do
     year = movie.year
     url  = movie.url
     poster = movie.poster
+    length = movie.length
+    plot_summary = movie.plot_summary
+    trailer_url = movie.trailer_url
+    rating = movie.rating
     if @netflix_instant_library.include?(name)
       movie = Movie.find_or_create_by_name(name: name)
-      movie.update_attributes(rank: rank, list_id: list.id, year: year, url: url, poster: poster)
+      movie.update_attributes(
+        rank: rank,
+        list_id: list.id,
+        year: year,
+        url: url,
+        poster: poster,
+        length: length,
+        plot_summary: plot_summary,
+        trailer_url: trailer_url,
+        rating: rating)
     end
   end
 
