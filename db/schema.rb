@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(:version => 20150327213957) do
     t.string   "url"
     t.string   "poster"
     t.integer  "length"
-    t.string   "plot_summary"
+    t.text     "plot_summary"
     t.string   "trailer_url"
     t.float    "rating"
   end
