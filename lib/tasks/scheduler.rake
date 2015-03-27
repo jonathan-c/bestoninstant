@@ -18,7 +18,10 @@ task :update => :environment do
     movies.each {|i| @netflix_instant_library<<i.children.to_html }
   end
 
-  324.times do
+  pagination = page.search(".pagination a")
+  total_pages = pagination[-2].children.to_html.to_i
+
+  total_pages.times do
     search_and_save(page)
     next_page_url = page.search('.next_page').attr('href')
     page = agent.get("#{next_page_url}")
@@ -34,9 +37,10 @@ task :update => :environment do
     name = movie.title.split("\n")[1].lstrip
     year = movie.year
     url  = movie.url
+    poster = movie.poster
     if @netflix_instant_library.include?(name)
       movie = Movie.find_or_create_by_name(name: name)
-      movie.update_attributes(rank: rank, list_id: list.id, year: year, url: url)
+      movie.update_attributes(rank: rank, list_id: list.id, year: year, url: url, poster: poster)
     end
   end
 
