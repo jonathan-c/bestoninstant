@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150327211833) do
+ActiveRecord::Schema.define(:version => 20150327213957) do
 
   create_table "lists", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -22,11 +22,15 @@ ActiveRecord::Schema.define(:version => 20150327211833) do
     t.integer  "rank"
     t.string   "name"
     t.integer  "year"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
     t.integer  "list_id"
     t.string   "url"
     t.string   "poster"
+    t.integer  "length"
+    t.string   "plot_summary"
+    t.string   "trailer_url"
+    t.float    "rating"
   end
 
   create_table "notifications", :force => true do |t|
