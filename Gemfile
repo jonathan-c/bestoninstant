@@ -9,6 +9,7 @@ gem 'twilio-ruby'
 gem 'figaro'
 gem 'gibbon'
 gem 'email_validator'
+gem 'themoviedb'
 
 
 group :assets do

@@ -27,13 +27,13 @@ class List < ActiveRecord::Base
     @client = Twilio::REST::Client.new
     List.previous.each do |movie|
       if !List.current.include?(movie)
-        Notification.create(message: "#{movie} has been removed from Netflix instant.", type: "removed", list_id: List.last.id)
+        Notification.create(message: "#{movie.name} has been removed from Netflix instant.", type: "removed", list_id: List.last.id)
 
         friends.each do |key, value|
           @client.account.messages.create(
             :from => ENV["from"],
             :to => key,
-            :body => "#{movie} has been removed from Netflix instant."
+            :body => "#{movie.name} has been removed from Netflix instant."
           )
         end
 
@@ -49,13 +49,13 @@ class List < ActiveRecord::Base
     @client = Twilio::REST::Client.new
     List.current.each do |movie|
       if !List.previous.include?(movie)
-        Notification.create(message: "#{movie} has been added to Netflix instant!", type: "added", list_id: List.last.id)
+        Notification.create(message: "#{movie.name} has been added to Netflix instant!", type: "added", list_id: List.last.id)
 
         friends.each do |key, value|
           @client.account.messages.create(
             :from => ENV["from"],
             :to => key,
-            :body => "#{movie} has been removed from Netflix instant."
+            :body => "#{movie.name} has been removed from Netflix instant."
           )
         end
 
