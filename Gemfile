@@ -7,6 +7,7 @@ gem 'mechanize'
 gem 'imdb'
 gem 'twilio-ruby'
 gem 'figaro'
+gem 'gibbon'
 
 
 group :assets do
