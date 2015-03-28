@@ -1,5 +1,12 @@
 <h1>Best On Instant</h1>
 <h3>Last updated on: <%= @list.created_at.strftime("%m/%d/%Y") %></h3>
+
+<p>Enter your email and be notified when movies from the IMDB Top 250 list are added to Netflix instant.</p>
+<%= form_tag("pages/subscribe", method: "post", id: "subscribe") do %>
+  <%= email_field(:user, :email, {id: "email", placeholder: @email.nil? ? "Email address" : "You have been signed up!"}) %>
+  <%= submit_tag("NOTIFY ME") %>
+<% end %>
+
 <% if @notications %>
   <ul>
     <% @notifications.each do |notification| %>
@@ -7,11 +14,10 @@
     <% end %>
   </ul>
 <% end %>
-<ul>
+<ul class="movie-list">
   <% @movies.each do |movie| %>
     <li>
-      <b><%= "#{movie.rank}." %></b>
-      <%= link_to("#{movie.name}", movie.url, :target => "_blank") %>
+      <%= image_tag(movie.poster, size: "45x65") %> <b><%= "#{movie.rank}." %></b> <%= link_to("#{movie.name}", movie.url, :target => "_blank") %>
       <%= "(#{movie.year})" %>
     </li>
   <% end %>

@@ -8,6 +8,7 @@ gem 'imdb'
 gem 'twilio-ruby'
 gem 'figaro'
 gem 'gibbon'
+gem 'email_validator'
 
 
 group :assets do

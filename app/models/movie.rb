@@ -3,13 +3,4 @@ class Movie < ActiveRecord::Base
   belongs_to :list
   validates :name, uniqueness: true
 
-  # def subscribe
-  #   @list_id = ENV["list_id"]
-  #   gb = Gibbon::API.new
-  #
-  #   gb.lists.subscribe({
-  #     :id => @list_id,
-  #     :email => {:email => params[:email][:address]}
-  #     })
-  # end
 end

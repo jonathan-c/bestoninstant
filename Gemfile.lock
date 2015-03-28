@@ -46,6 +46,8 @@ GEM
     debugger-ruby_core_source (1.3.8)
     domain_name (0.5.23)
       unf (>= 0.0.5, < 1.0.0)
+    email_validator (1.5.0)
+      activemodel
     erubis (2.7.0)
     execjs (2.4.0)
     figaro (1.1.0)
@@ -150,6 +152,7 @@ PLATFORMS
 DEPENDENCIES
   coffee-rails (~> 3.2.1)
   debugger
+  email_validator
   figaro
   gibbon
   imdb
