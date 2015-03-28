@@ -17,7 +17,7 @@
 <ul class="movie-list">
   <% @movies.each do |movie| %>
     <li>
-      <img src=<%= movie.poster %>, width="45" , height="65">
+      <img src=<%= movie.poster %> width="45" height="65">
       <b><%= "#{movie.rank}." %></b> <%= link_to("#{movie.name}", movie.url, :target => "_blank") %>
       <%= "(#{movie.year})" %>
     </li>
