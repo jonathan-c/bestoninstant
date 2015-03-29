@@ -43,18 +43,18 @@ task :update => :environment do
     rating = movie.rating
     if @netflix_instant_library.include?(name)
       movie = Movie.find_or_create_by_name(name: name)
-      Tmdb::Api.key(ENV["moviedb"])
+      Tmdb::Api.key("cb5092016691df8c27da21f335e4382c")
       poster = "http://image.tmdb.org/t/p/w500"+Tmdb::Movie.find(name)[0].poster_path
       movie.update_attributes(
         rank: rank,
         list_id: list.id,
         year: year,
         url: url,
-        poster: poster,
         length: length,
         plot_summary: plot_summary,
         trailer_url: trailer_url,
         rating: rating)
+      movie.update_attributes(poster: poster) if movie.poster.nil?
     end
   end
 
