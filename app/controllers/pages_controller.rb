@@ -1,28 +1,18 @@
 class PagesController < ApplicationController
-  before_filter :load_list, :only => :subscribe
 
   def index
     @list = List.last
     @movies = @list.movies
     @notifications = @list.notifications
-    if !session[:email].nil?
-      @email = true
-    end
   end
 
   def subscribe
-    email = params[:user][:email]
-    @user = User.create(email: email)
-    @gb.lists.subscribe({ :id => @list_id, :email => {:email => email} })
-    session[:email] = email
-    redirect_to root_path
-  end
-
-  private
-
-    def load_list
-      @list_id = ENV["list_id"]
-      @gb = Gibbon::API.new
+    @user = User.new(phone: "+1"+params[:area_code][0]+params[:first][0]+params[:last][0])
+    if @user.save
+      redirect_to root_path, :flash => { :notice => "Your phone number has been added!" }
+    else
+      redirect_to root_path, :flash => { :error => "Phone number not valid!" }
     end
+  end
 
 end

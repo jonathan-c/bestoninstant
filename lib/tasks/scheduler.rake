@@ -71,20 +71,7 @@ task :update => :environment do
     expiring_movie = Movie.find_by_name(movie.children.to_html)
     if List.current.include?(expiring_movie) && !expired.include?(expiring_movie.name)
       # Send notification & update expire date
-      friends = {
-        ENV["jon"] => "Jon",
-        ENV["tone"] => "Anthony"
-      }
-      @client = Twilio::REST::Client.new
-
-      friends.each do |key, value|
-        @client.account.messages.create(
-          :from => ENV["from"],
-          :to => key,
-          :body => "#{expiring_movie.name} (#{expiring_movie.year}) will soon be removed from Netflix instant. Watch it now before it's too late!"
-        )
-      end
-
+      send_text("#{expiring_movie.name} (#{expiring_movie.year}) will soon be removed from Netflix instant. Watch it now before it's too late!")
     end
   end
 

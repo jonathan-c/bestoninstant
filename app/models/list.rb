@@ -20,45 +20,19 @@ class List < ActiveRecord::Base
   end
 
   def self.notify_movies_removed
-    friends = {
-      ENV["jon"] => "Jon",
-      ENV["tone"] => "Anthony"
-    }
-    @client = Twilio::REST::Client.new
     List.previous.each do |movie|
       if !List.current.include?(movie)
         Notification.create(message: "#{movie.name} has been removed from Netflix instant.", type: "removed", list_id: List.last.id)
-
-        friends.each do |key, value|
-          @client.account.messages.create(
-            :from => ENV["from"],
-            :to => key,
-            :body => "#{movie.name} has been removed from Netflix instant."
-          )
-        end
-
+        send_text("#{movie.name} has been removed from Netflix instant.")
       end
     end
   end
 
   def self.notify_movies_added
-    friends = {
-      ENV["jon"] => "Jon",
-      ENV["tone"] => "Anthony"
-    }
-    @client = Twilio::REST::Client.new
     List.current.each do |movie|
       if !List.previous.include?(movie)
         Notification.create(message: "#{movie.name} has been added to Netflix instant!", type: "added", list_id: List.last.id)
-
-        friends.each do |key, value|
-          @client.account.messages.create(
-            :from => ENV["from"],
-            :to => key,
-            :body => "#{movie.name} has been removed from Netflix instant."
-          )
-        end
-
+        send_text("#{movie.name} has been removed from Netflix instant.")
       end
     end
   end

@@ -1,9 +1,17 @@
 <h1>Best On Instant</h1>
 <h3>Last updated on: <%= @list.created_at.strftime("%m/%d/%Y") %></h3>
 
-<p>Enter your email and be notified when movies from the IMDB Top 250 list are added to Netflix instant.</p>
+
+
+<p>Get a text when movies from the IMDB Top 250 list are added to Netflix instant!</p>
+
+<p id="error"><%= flash[:error] %></p>
+<p id="notice"><%= flash[:notice] %></p>
+
 <%= form_tag("pages/subscribe", method: "post", id: "subscribe") do %>
-  <%= email_field(:user, :email, {id: "email", placeholder: @email.nil? ? "Email address" : "You have been signed up!"}) %>
+  +1 ( <%= text_field "area_code", "", :maxlength => 3 %> )
+  <%= text_field "first", "", :maxlength => 3 %>
+  <%= text_field "last", "", :maxlength => 4 %>
   <%= submit_tag("NOTIFY ME") %>
 <% end %>
 
