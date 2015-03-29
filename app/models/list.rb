@@ -23,7 +23,9 @@ class List < ActiveRecord::Base
     List.previous.each do |movie|
       if !List.current.include?(movie)
         Notification.create(message: "#{movie.name} has been removed from Netflix instant.", type: "removed", list_id: List.last.id)
-        send_text("#{movie.name} has been removed from Netflix instant.")
+        User.all.each do |user|
+          send_text(user.phone, "#{movie.name} has been removed from Netflix instant.")
+        end
       end
     end
   end
@@ -32,7 +34,9 @@ class List < ActiveRecord::Base
     List.current.each do |movie|
       if !List.previous.include?(movie)
         Notification.create(message: "#{movie.name} has been added to Netflix instant!", type: "added", list_id: List.last.id)
-        send_text("#{movie.name} has been removed from Netflix instant.")
+        User.all.each do |user|
+          send_text(user.phone, "#{movie.name} has been removed from Netflix instant.")
+        end
       end
     end
   end

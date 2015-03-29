@@ -71,7 +71,9 @@ task :update => :environment do
     expiring_movie = Movie.find_by_name(movie.children.to_html)
     if List.current.include?(expiring_movie) && !expired.include?(expiring_movie.name)
       # Send notification & update expire date
-      send_text("#{expiring_movie.name} (#{expiring_movie.year}) will soon be removed from Netflix instant. Watch it now before it's too late!")
+      User.all.each do |user|
+        send_text(user.phone, "#{expiring_movie.name} (#{expiring_movie.year}) will soon be removed from Netflix instant. Watch it now before it's too late!")
+      end
     end
   end
 
