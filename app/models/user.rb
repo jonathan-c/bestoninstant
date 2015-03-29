@@ -9,6 +9,6 @@ class User < ActiveRecord::Base
   # validates :email, uniqueness: true
 
   def send_confirmation_text
-    send_text(self.phone, "You will now receive Best on Instant movie notifications.")
+    send_text(self.phone, "Welcome to the club! You will now receive Best on Instant movie notifications.")
   end
 end
