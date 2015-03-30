@@ -30,7 +30,7 @@
     <% slice.each do |movie| %>
       <td>
         <div class="col-lg-4 movie-circle">
-          <%= image_tag(movie.poster, size: "130x130", :class => "img-circle") %>
+          <%= image_tag(movie.poster, size: "125x125", :class => "img-circle") %>
           <h4><%= "##{movie.rank}" %></h4>
           <h4><%= link_to("#{movie.name}", movie.url, :target => "_blank") %></h4>
           <p><h4><%= "(#{movie.year})" %></h4></p>
