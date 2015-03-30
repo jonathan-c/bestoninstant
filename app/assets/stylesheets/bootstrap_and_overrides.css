@@ -1,0 +1,20 @@
+/*
+  =require twitter-bootstrap-static/bootstrap
+  Use Font Awesome icons (default)
+  To use Glyphicons sprites instead of Font Awesome, replace with "require twitter-bootstrap-static/sprites"
+  =require twitter-bootstrap-static/fontawesome
+  */
+
+.span12 {
+	text-align: center;
+	margin: 0 auto;
+}
+
+form {
+	width: 250px;
+	margin: 0 auto
+}
+
+#meals-eaten {
+	text-align: center;
+}

@@ -10,6 +10,7 @@ gem 'figaro'
 gem 'gibbon'
 gem 'email_validator'
 gem 'themoviedb'
+gem 'twitter-bootstrap-rails'
 
 
 group :assets do
