@@ -58,8 +58,8 @@ task :update => :environment do
     end
   end
 
-  List.notify_movies_removed
-  List.notify_movies_added
+  #List.notify_movies_removed
+  #List.notify_movies_added
 
   expiring_agent = Mechanize.new
   expiring_page = expiring_agent.get("http://whatsonnetflixnow.blogspot.com/p/expiring-soon.html")
