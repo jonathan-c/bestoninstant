@@ -11,11 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150329190444) do
+ActiveRecord::Schema.define(:version => 20150601210936) do
 
   create_table "lists", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "lists_movies", :id => false, :force => true do |t|
+    t.integer "list_id"
+    t.integer "movie_id"
   end
 
   create_table "movies", :force => true do |t|

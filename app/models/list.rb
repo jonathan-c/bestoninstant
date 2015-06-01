@@ -1,6 +1,6 @@
 class List < ActiveRecord::Base
   # attr_accessible :title, :body
-  has_many :movies, :order => 'rank ASC'
+  has_and_belongs_to_many :movies, :order => 'rank ASC'
   has_many :notifications
 
   def self.previous
