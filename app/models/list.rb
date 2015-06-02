@@ -1,7 +1,7 @@
 class List < ActiveRecord::Base
   # attr_accessible :title, :body
   has_many :list_movies
-  has_many :movies, :through => :list_movies, :order => 'rank ASC'
+  has_many :movies, :through => :list_movie, :order => 'rank ASC'
   has_many :notifications
 
   def self.previous
