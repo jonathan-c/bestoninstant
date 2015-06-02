@@ -53,7 +53,7 @@ task :update => :environment do
         plot_summary: plot_summary,
         trailer_url: trailer_url,
         rating: rating)
-      ListMovies.create(list_id: list.id, movie_id: movie.id)
+      ListMovie.create(list_id: list.id, movie_id: movie.id)
       movie.update_attributes(poster: poster) if movie.poster.nil?
     end
   end
