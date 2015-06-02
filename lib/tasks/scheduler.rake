@@ -47,13 +47,13 @@ task :update => :environment do
       poster = "http://image.tmdb.org/t/p/w500"+Tmdb::Movie.find(name)[0].poster_path
       movie.update_attributes(
         rank: rank,
-        list_id: list.id,
         year: year,
         url: url,
         length: length,
         plot_summary: plot_summary,
         trailer_url: trailer_url,
         rating: rating)
+      ListMovies.create(list_id: list.id, movie_id: movie.id)
       movie.update_attributes(poster: poster) if movie.poster.nil?
     end
   end
