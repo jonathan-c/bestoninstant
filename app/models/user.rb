@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :phone
+  attr_accessible :email, :phone, :active
   validates :phone, presence: true
   validates :phone, length: { is: 12 }
   validates :phone, uniqueness: true
@@ -11,4 +11,5 @@ class User < ActiveRecord::Base
   def send_confirmation_text
     send_text(self.phone, "Welcome to the club! You will now receive Best on Instant movie notifications.")
   end
+
 end

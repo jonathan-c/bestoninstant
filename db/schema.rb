@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150602011733) do
+ActiveRecord::Schema.define(:version => 20150602140717) do
 
   create_table "list_movies", :id => false, :force => true do |t|
     t.integer "list_id"
@@ -48,9 +48,10 @@ ActiveRecord::Schema.define(:version => 20150602011733) do
 
   create_table "users", :force => true do |t|
     t.string   "email"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
     t.string   "phone"
+    t.boolean  "active",     :default => true
   end
 
 end
